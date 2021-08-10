@@ -17,4 +17,4 @@ Accessibility:
 UI
 - The 'mortgage' button - make it more obvious that it's clickable (aside from pointer).
 - Address could do with more information ie. Town.
-- Decimal place consistency (sometimes .00, sometime and round number)
+- Decimal place consistency (sometimes .00, sometimes a round number)
