@@ -7,12 +7,12 @@
 
 ## 2. What UX or design improvements or alterations might you suggest? These can be to existing components or completely new ideas.
 Sematics
-- <ul> tags should really only contain <li>'s. Not divs.
+- `<ul>` tags should really only contain `<li>`'s. Not divs.
 - data - bankName comes back as 'Residential' - Very misleading as to what this is...so more labeling required
 
 Accessibility:
-- <title> was missing
-- <html> lang attribute was missing
+- `<title>` was missing
+- `<html>` lang attribute was missing
 
 UI
 - The 'mortgage' button - make it more obvious that it's clickable (aside from pointer).
