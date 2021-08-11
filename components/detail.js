@@ -39,18 +39,31 @@ const account = {
   updateAfterDays: 30,
 };
 
-const Detail = ({}) => {
-  useEffect(() => {
-    window
-      .fetch("/api/account")
-      .then((res) => res.json())
-      .then(console.log);
-  }, []);
+const Detail = ({ }) => {
+
+  // useEffect(() => {
+  //   window
+  //     .fetch("http://localhost:3333/api/account")
+  //     .then((res) => res.json())
+  //     .then(console.log)
+  // }, []);
+
+  const purchasePrice = account.originalPurchasePrice;
+  const purchaseDate = account.originalPurchasePriceDate;
+
+  const sincePurchaseValue = account.recentValuation.amount - purchasePrice;
+  const sincePurchasePercentage = (sincePurchaseValue / purchasePrice) * 100;
+
+  const purchaseMonth = new Date(purchaseDate).toLocaleString('default', { month: 'long' });
+  const purchaseYear = new Date(purchaseDate).getFullYear();
+  const currentYear = new Date().getFullYear();
+  const yearsSincePurchase = currentYear - purchaseYear;
+  const annualAppreciation = sincePurchasePercentage / yearsSincePurchase;
 
   let mortgage;
-  const lastUpdate = new Date(account.lastUpdate);
+  const lastUpdate = new Date(account?.lastUpdate);
   if (account.associatedMortgages.length) {
-    mortgage = account.associatedMortgages[0];
+    mortgage = account?.associatedMortgages[0];
   }
 
   return (
@@ -82,6 +95,41 @@ const Detail = ({}) => {
             <InfoText>{account.name}</InfoText>
             <InfoText>{account.bankName}</InfoText>
             <InfoText>{account.postcode}</InfoText>
+          </AccountList>
+        </RowContainer>
+      </AccountSection>
+      <AccountSection>
+        <AccountLabel>Valuation Changes</AccountLabel>
+        <RowContainer>
+          <AccountList>
+            <InfoText>
+              <p>
+                Purchased for &nbsp;
+                <strong>{new Intl.NumberFormat("en-GB", {
+                  style: "currency",
+                  currency: "GBP",
+                  maximumSignificantDigits: 3,
+                }).format(
+                  Math.abs(purchasePrice)
+                )}&nbsp;</strong> in {purchaseMonth} {purchaseYear}
+              </p>
+            </InfoText>
+            <InfoText>
+              <p>Since purchase</p>
+              <p>
+                {new Intl.NumberFormat("en-GB", {
+                  style: "currency",
+                  currency: "GBP",
+                  maximumSignificantDigits: 3
+                }).format(
+                  Math.abs(sincePurchaseValue)
+                ) + ` (` + `${sincePurchasePercentage}` + `%)`}
+              </p>
+            </InfoText>
+            <InfoText>
+              <p>Annual appreciation</p>
+              <p>{annualAppreciation}%</p>
+            </InfoText>
           </AccountList>
         </RowContainer>
       </AccountSection>

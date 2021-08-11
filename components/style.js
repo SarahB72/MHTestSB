@@ -20,14 +20,31 @@ export const AccountHeadline = styled.h2`
 `;
 
 export const InfoText = styled.div`
-  line-height: 1.6;
-  font-size: ${(props) => props.theme.typography.l.fontSize};
   color: ${(props) => props.theme.colors.neutral[800]};
   display: flex;
+  font-size: ${(props) => props.theme.typography.l.fontSize};
+  justify-content: space-between;
+  line-height: 1.6;
   margin-bottom: ${(props) => props.theme.space.s};
 
   p {
+    align-self: center;
     margin-bottom: ${(props) => props.theme.space.s};
+    text-align: left;
+    width: 50%;
+
+    &:nth-of-type(2) {
+      background-color: ${(props) => props.theme.colors.green.light};
+      border-radius: ${(props) => props.theme.space.m};
+      color: ${(props) => props.theme.colors.green.default};
+      font-weight: ${(props) => props.theme.fonts.weights.bold};
+      padding: ${(props) => props.theme.space.xs} ${(props) => props.theme.space.s};
+      text-align: center;
+      width: 50%;
+    }
+    &:only-child {
+      width: 100%;
+    }
   }
 `;
 
