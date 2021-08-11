@@ -1,7 +1,7 @@
 # MHTestSB
 
 ## 1. Given more time, were there other changes you would have liked to make?
-- Taken code from api given that this data is likely to update regularly, which in turn could lead to 
+- Taken code from api given as this data is likely to update regularly, which in turn could lead to 
 - Use of Optional chaining
 - Use of loading gif, error warnings
 - Fix issue with format function from date-fns
