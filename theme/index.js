@@ -10,6 +10,10 @@ export const generateShades = (hex) => ({
 export const theme = {
   fonts: {
     body: `"sans-serif"`,
+    weights: {
+      default: "normal",
+      bold: "bold",
+    }
   },
   colors: {
     primary: generateShades("#01a5b8"),
@@ -28,6 +32,10 @@ export const theme = {
     },
     white: {
       default: "#fff",
+    },
+    green: {
+      default: "#005E49",
+      light: "#CAF7E3",
     },
   },
   typography: {
