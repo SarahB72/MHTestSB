@@ -1,6 +1,6 @@
 /* eslint-disable max-statements */
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { add, format } from "date-fns";
 import { Button } from "./button";
 
@@ -40,18 +40,21 @@ const account = {
 };
 
 const Detail = ({ }) => {
-
+  // const [account, setAccount] = useState([]);
+  // console.log("account", account)
+  //
   // useEffect(() => {
   //   window
   //     .fetch("http://localhost:3333/api/account")
   //     .then((res) => res.json())
+  //     .then((result) => setAccount(result.account))
   //     .then(console.log)
   // }, []);
 
   const purchasePrice = account.originalPurchasePrice;
   const purchaseDate = account.originalPurchasePriceDate;
 
-  const sincePurchaseValue = account.recentValuation.amount - purchasePrice;
+  const sincePurchaseValue = account.recentValuation?.amount - purchasePrice;
   const sincePurchasePercentage = (sincePurchaseValue / purchasePrice) * 100;
 
   const purchaseMonth = new Date(purchaseDate).toLocaleString('default', { month: 'long' });
@@ -61,9 +64,9 @@ const Detail = ({ }) => {
   const annualAppreciation = sincePurchasePercentage / yearsSincePurchase;
 
   let mortgage;
-  const lastUpdate = new Date(account?.lastUpdate);
-  if (account.associatedMortgages.length) {
-    mortgage = account?.associatedMortgages[0];
+  const lastUpdate = new Date(account.lastUpdate);
+  if (account.associatedMortgages?.length) {
+    mortgage = account.associatedMortgages[0];
   }
 
   return (
@@ -74,7 +77,7 @@ const Detail = ({ }) => {
           {new Intl.NumberFormat("en-GB", {
             style: "currency",
             currency: "GBP",
-          }).format(account.recentValuation.amount)}
+          }).format(account.recentValuation?.amount)}
         </AccountHeadline>
         <AccountList>
           <InfoText>
